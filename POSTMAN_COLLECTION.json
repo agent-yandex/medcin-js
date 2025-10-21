@@ -1,0 +1,421 @@
+{
+  "info": {
+    "name": "Hospital Management API",
+    "description": "API для управления пациентами, врачами и записями на приём",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"receptionist1\",\n  \"email\": \"receptionist@hospital.com\",\n  \"password\": \"password123\",\n  \"role\": \"receptionist\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patients",
+      "item": [
+        {
+          "name": "Get All Patients",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients"]
+            }
+          }
+        },
+        {
+          "name": "Get Patient by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Иван\",\n  \"lastName\": \"Петров\",\n  \"middleName\": \"Сергеевич\",\n  \"dateOfBirth\": \"1990-05-15\",\n  \"gender\": \"male\",\n  \"email\": \"ivan.petrov@example.com\",\n  \"insurancePolicy\": \"1234567890123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients"]
+            }
+          }
+        },
+        {
+          "name": "Update Patient",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Иван\",\n  \"lastName\": \"Петров\",\n  \"middleName\": \"Сергеевич\",\n  \"dateOfBirth\": \"1990-05-15\",\n  \"gender\": \"male\",\n  \"email\": \"ivan.petrov.new@example.com\",\n  \"insurancePolicy\": \"1234567890123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Patient",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Doctors",
+      "item": [
+        {
+          "name": "Get All Doctors",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors"]
+            }
+          }
+        },
+        {
+          "name": "Get Doctor by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Doctor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Анна\",\n  \"lastName\": \"Смирнова\",\n  \"middleName\": \"Владимировна\",\n  \"specialization\": \"Терапевт\",\n  \"contactPhone\": \"+79001234567\",\n  \"contactEmail\": \"a.smirnova@hospital.com\",\n  \"schedule\": {\n    \"monday\": \"9:00-17:00\",\n    \"tuesday\": \"9:00-17:00\",\n    \"wednesday\": \"9:00-17:00\",\n    \"thursday\": \"9:00-17:00\",\n    \"friday\": \"9:00-15:00\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors"]
+            }
+          }
+        },
+        {
+          "name": "Update Doctor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Анна\",\n  \"lastName\": \"Смирнова\",\n  \"middleName\": \"Владимировна\",\n  \"specialization\": \"Врач общей практики\",\n  \"contactPhone\": \"+79001234567\",\n  \"contactEmail\": \"a.smirnova@hospital.com\",\n  \"schedule\": {\n    \"monday\": \"8:00-16:00\",\n    \"tuesday\": \"8:00-16:00\",\n    \"wednesday\": \"8:00-16:00\",\n    \"thursday\": \"8:00-16:00\",\n    \"friday\": \"8:00-14:00\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Doctor",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/doctors/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctors", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Get All Appointments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            }
+          }
+        },
+        {
+          "name": "Get Appointment by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Patient History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/patient/1/history",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "patient", "1", "history"]
+            }
+          }
+        },
+        {
+          "name": "Create Appointment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": 1,\n  \"doctorId\": 1,\n  \"appointmentDate\": \"2024-12-25T10:00:00Z\",\n  \"status\": \"scheduled\",\n  \"reason\": \"Общее обследование\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments"]
+            }
+          }
+        },
+        {
+          "name": "Update Appointment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\",\n  \"notes\": \"Диагноз: мигрень. Назначено лечение.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Appointment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/appointments/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "appointments", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
+
