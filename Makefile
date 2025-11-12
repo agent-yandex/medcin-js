@@ -33,6 +33,10 @@ build: ## Собрать образы
 rebuild: ## Пересобрать и запустить
 	docker-compose up -d --build
 
+rebuild-no-cache: ## Пересобрать образ без кеша (при изменении зависимостей)
+	docker-compose build --no-cache app
+	docker-compose up -d
+
 dev: ## Запустить только PostgreSQL (для локальной разработки)
 	docker-compose -f docker-compose.dev.yml up -d
 

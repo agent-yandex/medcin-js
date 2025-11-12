@@ -1,4 +1,3 @@
-// Простой логгер для приложения
 const log = {
   info: (message, ...args) => {
     console.log(`[INFO] ${new Date().toISOString()} - ${message}`, ...args);
