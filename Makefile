@@ -1,6 +1,6 @@
 # Makefile для упрощения работы с Docker
 
-.PHONY: help up down restart logs migrate seed clean build rebuild
+.PHONY: help up down restart logs migrate seed clean build rebuild test test-watch test-coverage test-check-db check-db
 
 help: ## Показать помощь
 	@echo "Доступные команды:"
@@ -58,4 +58,19 @@ backup: ## Создать бэкап БД
 
 stats: ## Показать использование ресурсов
 	docker stats $$(docker-compose ps -q)
+
+test: ## Запустить тесты
+	npm test
+
+test-watch: ## Запустить тесты в режиме watch
+	npm run test:watch
+
+test-coverage: ## Запустить тесты с покрытием кода
+	npm run test:coverage
+
+test-check-db: ## Проверить подключение к тестовой БД
+	npm run test:check-db
+
+check-db: ## Проверить подключение к БД
+	npm run check-db
 

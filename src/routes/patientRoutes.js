@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const patientController = require('../controllers/patientController');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
-const { validatePatient, validateId } = require('../middleware/validators');
+const { validatePatient, validatePatientUpdate, validateId } = require('../middleware/validators');
 
 // All routes require authentication
 router.use(authenticateToken);
@@ -204,7 +204,7 @@ router.post('/',
 router.put('/:id', 
   authorizeRoles('admin', 'receptionist'), 
   validateId, 
-  validatePatient, 
+  validatePatientUpdate, 
   patientController.updatePatient
 );
 

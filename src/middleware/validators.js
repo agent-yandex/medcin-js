@@ -44,6 +44,39 @@ const validatePatient = [
   handleValidationErrors
 ];
 
+// Validation for updating patient (all fields optional)
+const validatePatientUpdate = [
+  body('firstName')
+    .optional()
+    .trim()
+    .notEmpty().withMessage('Имя не может быть пустым')
+    .isLength({ min: 2, max: 100 }).withMessage('Имя должно быть от 2 до 100 символов'),
+  body('lastName')
+    .optional()
+    .trim()
+    .notEmpty().withMessage('Фамилия не может быть пустой')
+    .isLength({ min: 2, max: 100 }).withMessage('Фамилия должна быть от 2 до 100 символов'),
+  body('middleName')
+    .optional()
+    .trim()
+    .isLength({ max: 100 }).withMessage('Отчество должно быть не более 100 символов'),
+  body('dateOfBirth')
+    .optional()
+    .isDate().withMessage('Неверный формат даты'),
+  body('gender')
+    .optional()
+    .isIn(['male', 'female', 'other']).withMessage('Пол должен быть: male, female или other'),
+  body('email')
+    .optional()
+    .trim()
+    .isEmail().withMessage('Неверный формат email'),
+  body('insurancePolicy')
+    .optional()
+    .trim()
+    .isLength({ min: 5, max: 50 }).withMessage('Страховой полис должен быть от 5 до 50 символов'),
+  handleValidationErrors
+];
+
 // Validation for doctors
 const validateDoctor = [
   body('firstName')
@@ -61,6 +94,41 @@ const validateDoctor = [
   body('specialization')
     .trim()
     .notEmpty().withMessage('Специализация обязательна')
+    .isLength({ min: 2, max: 255 }).withMessage('Специализация должна быть от 2 до 255 символов'),
+  body('contactPhone')
+    .optional()
+    .trim()
+    .isMobilePhone('any').withMessage('Неверный формат телефона'),
+  body('contactEmail')
+    .optional()
+    .trim()
+    .isEmail().withMessage('Неверный формат email'),
+  body('schedule')
+    .optional()
+    .isObject().withMessage('График работы должен быть объектом'),
+  handleValidationErrors
+];
+
+// Validation for updating doctor (all fields optional)
+const validateDoctorUpdate = [
+  body('firstName')
+    .optional()
+    .trim()
+    .notEmpty().withMessage('Имя не может быть пустым')
+    .isLength({ min: 2, max: 100 }).withMessage('Имя должно быть от 2 до 100 символов'),
+  body('lastName')
+    .optional()
+    .trim()
+    .notEmpty().withMessage('Фамилия не может быть пустой')
+    .isLength({ min: 2, max: 100 }).withMessage('Фамилия должна быть от 2 до 100 символов'),
+  body('middleName')
+    .optional()
+    .trim()
+    .isLength({ max: 100 }).withMessage('Отчество должно быть не более 100 символов'),
+  body('specialization')
+    .optional()
+    .trim()
+    .notEmpty().withMessage('Специализация не может быть пустой')
     .isLength({ min: 2, max: 255 }).withMessage('Специализация должна быть от 2 до 255 символов'),
   body('contactPhone')
     .optional()
@@ -180,7 +248,9 @@ const validateAppointmentFilters = [
 
 module.exports = {
   validatePatient,
+  validatePatientUpdate,
   validateDoctor,
+  validateDoctorUpdate,
   validateAppointment,
   validateAppointmentUpdate,
   validateId,
